@@ -8,7 +8,7 @@ import { ResponsiveGrid } from '@/components/layout/responsive-grid';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { EmptyState } from '@/components/shared/empty-state';
-import { Sparkles, Clock, MapPin, ArrowRight, Loader2 } from 'lucide-react';
+import { Compass, Clock, MapPin, ArrowRight, Loader2 } from 'lucide-react';
 
 export default function ExperiencesCatalogPage() {
   const [experiences, setExperiences] = useState<any[]>([]);
@@ -27,7 +27,7 @@ export default function ExperiencesCatalogPage() {
       <PageHeader
         title="Food Trails & Experiential Activities"
         description="Guided SM Street Halwa tasting walks, Chaliyar river backwater cruises & heritage sunset tours in Kozhikode."
-        icon={<Sparkles className="w-6 h-6" />}
+        icon={<Compass className="w-6 h-6 text-[#2563EB]" />}
         breadcrumbs={[
           { label: 'Explore', href: '/explore' },
           { label: 'Experiences' },
@@ -41,7 +41,7 @@ export default function ExperiencesCatalogPage() {
         </div>
       ) : experiences.length === 0 ? (
         <EmptyState
-          icon={<Sparkles className="w-8 h-8 text-[#2563EB]" />}
+          icon={<Compass className="w-8 h-8 text-[#2563EB]" />}
           title="No experiences listed yet"
           description="There are currently no guided tours or experiential activities scheduled. Check out places to visit in Kozhikode."
           actionLabel="Explore Places"

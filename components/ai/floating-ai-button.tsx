@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Sparkles, Bot, X, Send, MapPin, ExternalLink } from 'lucide-react';
+import { Bot, X, Send, MapPin, ExternalLink } from 'lucide-react';
 
 export const FloatingAiButton: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,7 +14,7 @@ export const FloatingAiButton: React.FC = () => {
   >([
     {
       sender: 'assistant',
-      text: 'Hello! I am your LiveCalicut AI Concierge. Ask me about biriyani spots, local jobs, beach rentals, or SM Street shops!',
+      text: 'Hello! I am your LiveCalicut Local Concierge. Ask me about dining spots, local jobs, beach rentals, or SM Street shops!',
     },
   ]);
 
@@ -48,10 +48,10 @@ export const FloatingAiButton: React.FC = () => {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        aria-label="Ask AI Concierge"
+        aria-label="Ask Local Concierge"
         className="fixed bottom-20 right-5 z-50 flex items-center gap-2 rounded-2xl border border-[#2563EB]/20 bg-[#2563EB] px-3.5 py-3 text-white shadow-lg shadow-[#2563EB]/20 transition hover:bg-[#1D4ED8] sm:right-6"
       >
-        <Sparkles className="h-4 w-4" />
+        <Bot className="h-4 w-4" />
         <span className="hidden text-[12px] font-semibold sm:inline">Ask AI</span>
       </button>
 

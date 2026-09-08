@@ -3,7 +3,7 @@ import { GalleryComponent } from '@/components/business/gallery-component';
 import { MapComponent } from '@/components/business/map-component';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Star, Phone, Globe, Sparkles } from 'lucide-react';
+import { Star, Phone, Globe, CheckCircle2 } from 'lucide-react';
 
 export default async function HotelDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -68,7 +68,7 @@ export default async function HotelDetailsPage({ params }: { params: Promise<{ s
                     key={item}
                     className="px-3 py-1 rounded-lg bg-purple-50 dark:bg-purple-950/30 text-purple-700 dark:text-purple-300 text-xs font-semibold flex items-center gap-1"
                   >
-                    <Sparkles className="w-3 h-3 text-purple-500" /> {item}
+                    <CheckCircle2 className="w-3 h-3 text-purple-500" /> {item}
                   </span>
                 ))}
               </div>

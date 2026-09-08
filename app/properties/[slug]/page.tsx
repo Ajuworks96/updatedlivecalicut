@@ -4,7 +4,7 @@ import { AgentCard } from '@/components/property/agent-card';
 import { GalleryComponent } from '@/components/business/gallery-component';
 import { MapComponent } from '@/components/business/map-component';
 import { Card } from '@/components/ui/card';
-import { Bed, Bath, Maximize, Car, Sparkles, Building } from 'lucide-react';
+import { Bed, Bath, Maximize, Car, CheckCircle2, Building } from 'lucide-react';
 import { DetailSaveActions } from '@/components/auth/detail-save-actions';
 
 export default async function PropertyDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -132,7 +132,7 @@ export default async function PropertyDetailsPage({ params }: { params: Promise<
                     key={item}
                     className="px-3.5 py-1.5 rounded-xl bg-blue-50 border border-blue-200 text-[#2563EB] text-xs font-bold flex items-center gap-1.5"
                   >
-                    <Sparkles className="w-3.5 h-3.5 text-[#2563EB]" /> {item}
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#2563EB]" /> {item}
                   </span>
                 ))}
               </div>

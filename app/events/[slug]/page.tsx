@@ -6,7 +6,7 @@ import { OrganizerCard } from '@/components/feed/organizer-card';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Calendar, MapPin, Ticket, ExternalLink, Sparkles } from 'lucide-react';
+import { Calendar, MapPin, Ticket, ExternalLink } from 'lucide-react';
 
 export default async function EventDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

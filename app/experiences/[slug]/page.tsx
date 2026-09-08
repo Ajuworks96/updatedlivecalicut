@@ -3,7 +3,7 @@ import { GalleryComponent } from '@/components/business/gallery-component';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Sparkles, Clock, MapPin, Bookmark } from 'lucide-react';
+import { Compass, Clock, MapPin, Bookmark } from 'lucide-react';
 
 export default async function ExperienceDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

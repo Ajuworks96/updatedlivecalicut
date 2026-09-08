@@ -2,7 +2,7 @@ import { PageHeader } from '@/components/shared/page-header';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Sparkles, Bot, Send } from 'lucide-react';
+import { Bot, Send } from 'lucide-react';
 
 export default function AiAssistantPage() {
   const suggestedPrompts = [
@@ -17,7 +17,7 @@ export default function AiAssistantPage() {
       <PageHeader
         title="LiveCalicut AI Local Concierge"
         description="Ask natural language questions to discover Kozhikode businesses, jobs, real estate & events."
-        icon={<Sparkles className="w-6 h-6" />}
+        icon={<Bot className="w-6 h-6 text-[#2563EB]" />}
         breadcrumbs={[{ label: 'AI Concierge' }]}
       />
 
@@ -38,7 +38,7 @@ export default function AiAssistantPage() {
       <Card className="p-6 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-4">
         <div className="p-4 rounded-2xl bg-cyan-50 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 text-xs leading-relaxed space-y-2">
           <p className="font-bold flex items-center gap-1.5 text-cyan-600 dark:text-cyan-400">
-            <Sparkles className="w-4 h-4" /> AI Concierge Ready
+            <Bot className="w-4 h-4" /> AI Concierge Ready
           </p>
           <p>
             I am grounded exclusively on verified LiveCalicut platform listings. Ask me anything about dining, vacancies, pre-owned items, or heritage spots in Kozhikode.
