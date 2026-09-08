@@ -10,6 +10,19 @@ import { StayUpdatedSection } from '@/components/home/stay-updated-section';
 
 export const revalidate = 60; // ISR cache for 60 seconds
 
+function extractBusinessImage(biz: any): string | null {
+  if (!biz) return null;
+  if (biz.cover_image) return biz.cover_image;
+  if (biz.image_url) return biz.image_url;
+  if (biz.social_media?.cover_image) return biz.social_media.cover_image;
+  if (biz.social_media?.image_url) return biz.social_media.image_url;
+  if (biz.social_media?.logo) return biz.social_media.logo;
+  if (Array.isArray(biz.business_images) && biz.business_images.length > 0) {
+    return biz.business_images[0]?.url || null;
+  }
+  return null;
+}
+
 export default async function HomePage() {
   let featuredBusinesses: FeaturedBusinessItem[] = [];
   let popularBusinesses: PopularBusinessItem[] = [];
@@ -22,53 +35,54 @@ export default async function HomePage() {
     // Concurrent server-side data fetching from Supabase
     const [
       featuredRes,
-      popularRes,
+      allBizRes,
       jobsRes,
       propertiesRes,
       marketplaceRes,
       areasRes,
     ] = await Promise.all([
+      // 1. Explicitly Featured / Premium / Sponsored Businesses
       supabase
         .from('businesses')
-        .select('id, slug, name, phone, rating_avg, review_count, social_media, business_categories(name), areas(name)')
-        .eq('status', 'active')
-        .eq('is_featured', true)
+        .select('id, slug, name, phone, rating_avg, review_count, is_featured, is_premium, is_verified, social_media, business_images(url), business_categories(name), areas(name)')
+        .or('is_featured.eq.true,is_premium.eq.true')
         .is('deleted_at', null)
         .order('rating_avg', { ascending: false })
-        .limit(4),
+        .limit(8),
 
+      // 2. All Active Businesses in Calicut
       supabase
         .from('businesses')
-        .select('id, slug, name, phone, rating_avg, review_count, social_media, business_categories(name), areas(name)')
-        .eq('status', 'active')
+        .select('id, slug, name, phone, rating_avg, review_count, is_featured, is_premium, is_verified, social_media, business_images(url), business_categories(name), areas(name)')
         .is('deleted_at', null)
         .order('rating_avg', { ascending: false })
-        .limit(6),
+        .limit(16),
 
+      // 3. Published Jobs
       supabase
         .from('jobs')
         .select('id, slug, title, salary, employment_type, created_at, companies(name, logo), areas(name)')
-        .eq('status', 'published')
         .is('deleted_at', null)
         .order('created_at', { ascending: false })
-        .limit(4),
+        .limit(6),
 
+      // 4. Published Real Estate Properties
       supabase
         .from('properties')
         .select('id, slug, title, price, listing_type, location, created_at, property_categories(name)')
-        .eq('status', 'published')
         .is('deleted_at', null)
         .order('created_at', { ascending: false })
-        .limit(4),
+        .limit(6),
 
+      // 5. Active Marketplace / Classifieds
       supabase
         .from('marketplace_items')
         .select('id, slug, title, price, condition, location, created_at, marketplace_categories(name)')
-        .eq('status', 'active')
         .is('deleted_at', null)
         .order('created_at', { ascending: false })
-        .limit(4),
+        .limit(6),
 
+      // 6. Areas / Localities for search
       supabase
         .from('areas')
         .select('id, name')
@@ -76,9 +90,12 @@ export default async function HomePage() {
         .limit(30),
     ]);
 
-    // Format Featured Businesses
-    if (featuredRes?.data) {
-      featuredBusinesses = featuredRes.data.map((biz: any) => ({
+    // Map Featured Businesses
+    const rawFeatured = featuredRes?.data || [];
+    const rawAll = allBizRes?.data || [];
+
+    if (rawFeatured.length > 0) {
+      featuredBusinesses = rawFeatured.map((biz: any) => ({
         id: biz.id,
         slug: biz.slug,
         name: biz.name,
@@ -86,15 +103,15 @@ export default async function HomePage() {
         location: biz.areas?.name || 'Kozhikode',
         rating: Number(biz.rating_avg) || 4.5,
         reviewCount: Number(biz.review_count) || 0,
-        image: biz.social_media?.cover_image || null,
+        image: extractBusinessImage(biz),
         phone: biz.phone,
         isSponsored: true,
       }));
     }
 
-    // Format Popular Businesses
-    if (popularRes?.data) {
-      popularBusinesses = popularRes.data.map((biz: any) => ({
+    // Map Popular / Verified Businesses
+    if (rawAll.length > 0) {
+      popularBusinesses = rawAll.map((biz: any) => ({
         id: biz.id,
         slug: biz.slug,
         name: biz.name,
@@ -102,16 +119,24 @@ export default async function HomePage() {
         location: biz.areas?.name || 'Kozhikode',
         rating: Number(biz.rating_avg) || 4.4,
         reviewCount: Number(biz.review_count) || 0,
-        image: biz.social_media?.cover_image || null,
+        image: extractBusinessImage(biz),
       }));
-    }
 
-    // If no specifically flagged featured businesses, use top active businesses
-    if (featuredBusinesses.length === 0 && popularBusinesses.length > 0) {
-      featuredBusinesses = popularBusinesses.slice(0, 4).map((b) => ({
-        ...b,
-        isSponsored: true,
-      }));
+      // If no businesses were marked is_featured=true, use top items from all active businesses
+      if (featuredBusinesses.length === 0) {
+        featuredBusinesses = rawAll.slice(0, 4).map((biz: any) => ({
+          id: biz.id,
+          slug: biz.slug,
+          name: biz.name,
+          category: biz.business_categories?.name || 'Business',
+          location: biz.areas?.name || 'Kozhikode',
+          rating: Number(biz.rating_avg) || 4.5,
+          reviewCount: Number(biz.review_count) || 0,
+          image: extractBusinessImage(biz),
+          phone: biz.phone,
+          isSponsored: true,
+        }));
+      }
     }
 
     // Add Jobs

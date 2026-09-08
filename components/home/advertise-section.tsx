@@ -11,37 +11,39 @@ import {
   Tag,
   Calendar,
   Briefcase,
+  MessageCircle,
+  PlusCircle,
 } from 'lucide-react';
 
 const PACKAGES = [
   {
     title: 'Featured Listing',
-    desc: 'More visibility',
+    desc: 'Top search & home visibility',
     icon: Sparkles,
   },
   {
     title: 'Banner Advertising',
-    desc: 'Brand awareness',
+    desc: 'High-impact brand exposure',
     icon: Layout,
   },
   {
-    title: 'Business Landing Page',
-    desc: 'Your dedicated space',
+    title: 'Verified Storefront',
+    desc: 'Direct WhatsApp & phone leads',
     icon: Globe,
   },
   {
     title: 'Offer Promotion',
-    desc: 'Attract more customers',
+    desc: 'Flash sales & discount deals',
     icon: Tag,
   },
   {
     title: 'Event Promotion',
-    desc: 'Get more attendees',
+    desc: 'Audience ticket booking boost',
     icon: Calendar,
   },
   {
-    title: 'Job Promotion',
-    desc: 'Find the right talent',
+    title: 'Job Vacancy Boost',
+    desc: 'Hire verified local talent fast',
     icon: Briefcase,
   },
 ];
@@ -50,7 +52,7 @@ export const AdvertiseSection: React.FC = () => {
   return (
     <section className="w-full bg-slate-50/70 py-12 sm:py-16 border-b border-slate-100">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-br from-blue-50/80 via-white to-blue-50/50 rounded-3xl p-6 sm:p-10 border border-blue-200/80 shadow-sm space-y-8">
+        <div className="bg-gradient-to-br from-blue-50/90 via-white to-amber-50/30 rounded-3xl p-6 sm:p-10 border border-blue-200/80 shadow-sm space-y-8">
           {/* Header Row */}
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div className="flex items-start gap-4">
@@ -62,18 +64,28 @@ export const AdvertiseSection: React.FC = () => {
                   Advertise with LiveCalicut
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-600 max-w-xl font-normal leading-relaxed">
-                  Reach thousands of people in Kozhikode. Grow your business with our promotional packages.
+                  Reach thousands of customers across Kozhikode daily. Boost footfall, inquiries and revenue with targeted advertising packages.
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-4 shrink-0">
-              <Link
-                href="/merchant"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all active:scale-95 cursor-pointer"
+            <div className="flex flex-wrap items-center gap-3 shrink-0">
+              <a
+                href="https://wa.me/919048000000?text=Hi%20LiveCalicut,%20I%20want%20to%20know%20about%20advertising%20packages%20for%20my%20business"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-md transition-all active:scale-95"
               >
-                <span>View Packages</span>
-                <ArrowRight className="w-4 h-4" />
+                <MessageCircle className="w-4 h-4" />
+                <span>Chat on WhatsApp</span>
+              </a>
+
+              <Link
+                href="/business/create"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs sm:text-sm shadow-md transition-all active:scale-95"
+              >
+                <PlusCircle className="w-4 h-4" />
+                <span>List Business Free</span>
               </Link>
             </div>
           </div>
@@ -85,15 +97,15 @@ export const AdvertiseSection: React.FC = () => {
               return (
                 <div
                   key={pkg.title}
-                  className="bg-white p-3.5 sm:p-4 rounded-2xl border border-slate-200/90 shadow-2xs hover:border-blue-300 hover:shadow-xs transition-all flex flex-col items-center text-center group"
+                  className="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-2xs hover:border-blue-300 hover:shadow-xs transition-all flex flex-col items-center text-center group"
                 >
-                  <div className="w-9 h-9 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center mb-2 group-hover:scale-110 group-hover:bg-[#2563EB] group-hover:text-white transition-all">
-                    <Icon className="w-4 h-4" />
+                  <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center mb-2.5 group-hover:scale-110 group-hover:bg-[#2563EB] group-hover:text-white transition-all shadow-2xs">
+                    <Icon className="w-5 h-5" />
                   </div>
                   <h4 className="text-xs sm:text-[13px] font-bold text-slate-800 leading-snug">
                     {pkg.title}
                   </h4>
-                  <p className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5">
+                  <p className="text-[10px] sm:text-[11px] text-slate-400 mt-1">
                     {pkg.desc}
                   </p>
                 </div>
@@ -102,17 +114,21 @@ export const AdvertiseSection: React.FC = () => {
           </div>
 
           {/* Bottom Sub-tagline */}
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-2 border-t border-blue-100 text-xs text-slate-500 font-medium">
-            <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Direct Malabar merchant advertising network</span>
+          <div className="pt-3 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Direct Malabar merchant advertising &amp; verified lead network</span>
             </div>
-            <p className="font-serif italic text-slate-600 text-center sm:text-right">
-              Let&apos;s grow together. Support Local, Grow Local.
-            </p>
+            <div className="flex items-center gap-4">
+              <Link href="/merchant" className="font-semibold text-[#2563EB] hover:underline flex items-center gap-1">
+                <span>View Merchant Workspace</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
 };
+
