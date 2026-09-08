@@ -19,6 +19,14 @@ export async function GET() {
       },
     });
   } catch (err: any) {
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    console.error('Explore API error:', err);
+    return NextResponse.json({
+      data: {
+        places: [],
+        restaurants: [],
+        hotels: [],
+        experiences: [],
+      },
+    });
   }
 }

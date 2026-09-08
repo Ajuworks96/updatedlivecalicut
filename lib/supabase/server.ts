@@ -35,6 +35,24 @@ export async function createClient() {
 }
 
 /**
+ * Server-side Supabase client for public/anonymous data fetching.
+ * Does NOT access cookies() so it works seamlessly during static site generation (SSG/ISR).
+ */
+export function createPublicClient() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder-project.supabase.co';
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key';
+
+  return createServerClient(url, anonKey, {
+    cookies: {
+      getAll() {
+        return [];
+      },
+      setAll() {},
+    },
+  });
+}
+
+/**
  * Server-side Supabase Admin client.
  * Bypasses RLS policies.
  * Call this ONLY in secure Server Components, API Route Handlers, and Server Actions where bypassing RLS is explicitly required (e.g., fetching user roles).

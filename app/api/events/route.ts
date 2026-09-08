@@ -11,10 +11,10 @@ export async function GET(request: Request) {
     .order('start_date', { ascending: true });
 
   if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ data: [] });
   }
 
-  return NextResponse.json({ data });
+  return NextResponse.json({ data: data || [] });
 }
 
 export async function POST(request: Request) {
