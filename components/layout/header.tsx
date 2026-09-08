@@ -11,7 +11,7 @@ import {
   Utensils,
   Camera,
   Palmtree,
-  Sparkles,
+  Newspaper,
   Menu,
   X,
   User,
@@ -107,7 +107,7 @@ export const Header: React.FC = () => {
     { href: '/tourism', label: 'Tourist Places', icon: Camera, desc: 'Lighthouse, Kappad, Beypore' },
     { href: '/restaurants', label: 'Food & Dining', icon: Utensils, desc: 'Malabar biryani, sweets & cafes' },
     { href: '/places?type=beaches', label: 'Beaches & Parks', icon: Palmtree, desc: 'Calicut Beach, South Beach' },
-    { href: '/news', label: 'Local Stories & Culture', icon: Sparkles, desc: 'Kozhikode heritage & news' },
+    { href: '/news', label: 'Local Stories & Culture', icon: Newspaper, desc: 'Kozhikode heritage & news' },
   ];
 
   const roleNames =

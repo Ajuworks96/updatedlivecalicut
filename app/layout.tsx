@@ -17,7 +17,6 @@ export const metadata: Metadata = {
   },
 };
 
-import { FloatingAiButton } from '@/components/ai/floating-ai-button';
 import { AnnouncementBanner } from '@/components/notifications/announcement-banner';
 import { RevealOnScrollInit } from '@/components/animated/reveal-on-scroll-init';
 
@@ -39,7 +38,6 @@ export default function RootLayout({
           <RevealOnScrollInit />
           <AnnouncementBanner />
           <PageContainer>{children}</PageContainer>
-          <FloatingAiButton />
         </AppProviders>
       </body>
     </html>

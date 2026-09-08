@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from '@/components/ui/card';
-import { Sparkles, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 interface CompletionWidgetProps {
   percent?: number;
@@ -11,7 +11,7 @@ export const CompletionWidget: React.FC<CompletionWidgetProps> = ({ percent = 85
     <Card className="p-4 border border-cyan-500/30 bg-gradient-to-r from-slate-900 via-cyan-950/20 to-slate-900 text-slate-100 flex items-center justify-between gap-4">
       <div className="space-y-1">
         <div className="flex items-center gap-1.5 text-xs font-bold text-cyan-400">
-          <Sparkles className="w-4 h-4 text-cyan-400" /> Business Listing Strength
+          <ShieldCheck className="w-4 h-4 text-cyan-400" /> Business Listing Strength
         </div>
         <p className="text-xs text-slate-400">
           Add gallery photos & working hours to reach 100% profile optimization.

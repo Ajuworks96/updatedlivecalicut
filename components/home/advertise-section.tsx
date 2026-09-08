@@ -5,7 +5,7 @@ import Link from 'next/link';
 import {
   Megaphone,
   ArrowRight,
-  Sparkles,
+  Award,
   Layout,
   Globe,
   Tag,
@@ -19,7 +19,7 @@ const PACKAGES = [
   {
     title: 'Featured Listing',
     desc: 'Top search & home visibility',
-    icon: Sparkles,
+    icon: Award,
   },
   {
     title: 'Banner Advertising',

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Sparkles, Star, MapPin, ArrowRight, Store, Building2, Utensils, Heart, Home, Briefcase, PlusCircle } from 'lucide-react';
+import { TrendingUp, Star, MapPin, ArrowRight, Store, Building2, Utensils, Heart, Home, Briefcase, PlusCircle } from 'lucide-react';
 
 export interface PopularBusinessItem {
   id: string;
@@ -31,7 +31,7 @@ export const PopularBusinessesSection: React.FC<PopularBusinessesSectionProps> =
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 pb-6 sm:pb-8">
           <div className="flex items-center gap-2.5">
             <div className="w-9 h-9 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center shrink-0">
-              <Sparkles className="w-5 h-5" />
+              <TrendingUp className="w-5 h-5" />
             </div>
             <div>
               <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight font-sans">

@@ -17,7 +17,7 @@ import {
   Palmtree,
   Utensils,
   Hotel,
-  Sparkles,
+  Calendar,
   ArrowRight,
   Bookmark,
   Share2,
@@ -207,7 +207,7 @@ export default function TourismPage() {
 
         <Link href="/events">
           <Card className="p-4 border border-slate-200/90 hover:border-emerald-400/50 bg-white hover:shadow-md space-y-2 text-center group rounded-2xl transition-all">
-            <Sparkles className="w-6 h-6 text-emerald-500 mx-auto group-hover:scale-110 transition-transform" />
+            <Calendar className="w-6 h-6 text-emerald-500 mx-auto group-hover:scale-110 transition-transform" />
             <h4 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-emerald-600">Fests & Culture</h4>
             <p className="text-[11px] text-slate-400 font-normal">Literature fest & boat races</p>
           </Card>

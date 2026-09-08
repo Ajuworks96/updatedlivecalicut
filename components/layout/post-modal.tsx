@@ -11,7 +11,7 @@ import {
   Calendar,
   Wrench,
   ArrowRight,
-  Sparkles,
+  Plus,
 } from 'lucide-react';
 
 interface PostModalProps {
@@ -88,7 +88,7 @@ export const PostModal: React.FC<PostModalProps> = ({ isOpen, onClose }) => {
         <div className="flex items-center justify-between pb-3 border-b border-slate-100 shrink-0">
           <div className="flex items-center gap-2.5 min-w-0">
             <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-blue-50 text-[#2563EB] flex items-center justify-center shrink-0">
-              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
+              <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             <div className="min-w-0">
               <h3 className="text-base sm:text-xl font-bold text-slate-900 font-sans tracking-tight truncate">

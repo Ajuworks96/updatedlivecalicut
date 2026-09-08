@@ -29,12 +29,12 @@ import {
   Shirt,
   Dumbbell,
   Laptop,
-  Sparkles,
+  LayoutGrid,
 } from 'lucide-react';
 import type { MarketplaceListing } from '@/lib/types/api.types';
 
 const CATEGORY_CHIPS = [
-  { name: 'All Categories', icon: Sparkles },
+  { name: 'All Categories', icon: LayoutGrid },
   { name: 'Electronics', icon: Laptop },
   { name: 'Mobiles & Tablets', icon: Smartphone },
   { name: 'Vehicles', icon: Car },

@@ -8,7 +8,6 @@ import {
   MapPin,
   Heart,
   ArrowRight,
-  Sparkles,
   Phone,
   MessageCircle,
   Megaphone,
@@ -219,7 +218,7 @@ export const FeaturedBusinessesSection: React.FC<FeaturedBusinessesSectionProps>
                 title: 'Featured Restaurant & Cafe',
                 desc: 'Showcase menus, food offers, and delivery contacts right at the top of Calicut foodies.',
                 badge: 'Top Dining Placement',
-                icon: Sparkles,
+                icon: Building2,
               },
               {
                 title: 'Property & Luxury Stays',
