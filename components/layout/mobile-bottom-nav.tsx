@@ -27,8 +27,8 @@ export const MobileBottomNav: React.FC = () => {
             href={item.href}
             className={`flex flex-col items-center gap-1 py-1 px-3 text-[11px] font-medium transition-colors ${
               isActive
-                ? 'text-cyan-600 dark:text-cyan-400 font-bold'
-                : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                ? 'text-[#2563EB] font-bold'
+                : 'text-slate-500 hover:text-slate-900'
             }`}
           >
             <Icon className="w-5 h-5" />

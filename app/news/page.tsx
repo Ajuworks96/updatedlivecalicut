@@ -24,7 +24,7 @@ export default function NewsListingPage() {
     { id: 'all', name: 'All News', slug: '' },
     { id: 'politics', name: 'Politics & Governance', slug: 'politics' },
     { id: 'business', name: 'Business & Economy', slug: 'business' },
-    { id: 'technology', name: 'Technology & Cyberpark', slug: 'technology' },
+    { id: 'technology', name: 'Technology & IT', slug: 'technology' },
     { id: 'education', name: 'Education & Colleges', slug: 'education' },
     { id: 'health', name: 'Health & Medical', slug: 'health' },
     { id: 'sports', name: 'Sports & Football', slug: 'sports' },
@@ -58,7 +58,7 @@ export default function NewsListingPage() {
           <Zap className="w-3.5 h-3.5 fill-white" /> Breaking News
         </span>
         <p className="truncate text-[#111827]">
-          Calicut Beach Waterfront Renovation Phase 2 Approved by Kozhikode Municipal Corporation • 500+ Cyberpark Vacancies Listed
+          Calicut Beach Waterfront Renovation Phase 2 Approved by Kozhikode Municipal Corporation • 500+ Career Opportunities Listed
         </p>
       </div>
 

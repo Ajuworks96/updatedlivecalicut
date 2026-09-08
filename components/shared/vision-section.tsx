@@ -11,7 +11,7 @@ export const VisionSection: React.FC = () => {
     },
     {
       title: 'Realtime Civic Connectivity',
-      description: 'Sub-second search engine connecting residents directly with Cyberpark recruiters & local merchants.',
+      description: 'Sub-second search engine connecting residents directly with Kozhikode employers & local merchants.',
       icon: Zap,
     },
     {
@@ -50,7 +50,7 @@ export const VisionSection: React.FC = () => {
             href="/jobs"
             className="inline-flex items-center gap-2 px-6 h-[44px] rounded-2xl bg-white border border-[#E5E7EB] hover:border-[#2563EB] text-[#111827] font-bold text-[15px] transition-all shadow-sm"
           >
-            <span>Cyberpark Openings</span>
+            <span>Explore Calicut Jobs</span>
           </Link>
         </div>
       </div>

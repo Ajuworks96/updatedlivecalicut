@@ -1,54 +1,64 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { Container } from '@/components/layout/container';
 import { PageHeader } from '@/components/shared/page-header';
 import { CompanyCard } from '@/components/jobs/company-card';
 import { ResponsiveGrid } from '@/components/layout/responsive-grid';
-import { Building } from 'lucide-react';
+import { EmptyState } from '@/components/shared/empty-state';
+import { Building, Loader2 } from 'lucide-react';
 
 export default function CompaniesDirectoryPage() {
-  const sampleCompanies = [
-    {
-      name: 'Cyberpark Software Solutions',
-      slug: 'cyberpark-software-solutions',
-      industry: 'IT & Cyberpark',
-      openingsCount: 4,
-      location: 'Cyberpark Phase 1, Calicut',
-    },
-    {
-      name: 'Hilite Mall Outlets',
-      slug: 'hilite-mall-outlets',
-      industry: 'Retail & Textiles',
-      openingsCount: 6,
-      location: 'Thondayad Bypass, Calicut',
-    },
-    {
-      name: 'Aster MIMS Health Hub',
-      slug: 'aster-mims-health-hub',
-      industry: 'Healthcare & Clinical',
-      openingsCount: 3,
-      location: 'Govindapuram, Calicut',
-    },
-  ];
+  const [companies, setCompanies] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/companies')
+      .then((r) => r.json())
+      .then((json) => setCompanies(json?.data || []))
+      .catch(() => setCompanies([]))
+      .finally(() => setLoading(false));
+  }, []);
 
   return (
-    <div className="space-y-8 py-4">
+    <Container className="py-6 sm:py-10 space-y-8">
       <PageHeader
         title="Kozhikode Employers & Companies"
-        description="Explore top IT firms in Cyberpark, retail chains & clinical healthcare hubs hiring in Kozhikode."
+        description="Explore top technology firms, retail enterprises & healthcare organizations hiring in Kozhikode."
         icon={<Building className="w-6 h-6" />}
-        breadcrumbs={[{ label: 'Company Directory' }]}
+        breadcrumbs={[
+          { label: 'Jobs', href: '/jobs' },
+          { label: 'Company Directory' },
+        ]}
       />
 
-      <ResponsiveGrid cols={3}>
-        {sampleCompanies.map((c) => (
-          <CompanyCard
-            key={c.slug}
-            name={c.name}
-            slug={c.slug}
-            industry={c.industry}
-            openingsCount={c.openingsCount}
-            location={c.location}
-          />
-        ))}
-      </ResponsiveGrid>
-    </div>
+      {loading ? (
+        <div className="flex items-center justify-center py-20 gap-3 text-[#6B7280]">
+          <Loader2 className="w-5 h-5 animate-spin text-[#2563EB]" />
+          <span className="text-sm font-medium">Loading companies...</span>
+        </div>
+      ) : companies.length === 0 ? (
+        <EmptyState
+          icon={<Building className="w-8 h-8 text-[#2563EB]" />}
+          title="No companies listed yet"
+          description="There are currently no employers listed in the directory. Check out active job openings."
+          actionLabel="Explore All Jobs"
+          actionHref="/jobs"
+        />
+      ) : (
+        <ResponsiveGrid cols={3}>
+          {companies.map((c) => (
+            <CompanyCard
+              key={c.slug || c.id}
+              name={c.name}
+              slug={c.slug || c.id}
+              industry={c.industry || 'Business & Technology'}
+              openingsCount={c.openings_count || 0}
+              location={c.location || c.address || 'Kozhikode'}
+            />
+          ))}
+        </ResponsiveGrid>
+      )}
+    </Container>
   );
 }

@@ -6,7 +6,7 @@ import { PageContainer } from '@/components/layout/PageContainer';
 export const metadata: Metadata = {
   title: 'LiveCalicut - Hyperlocal Portal for Kozhikode & Kerala',
   description:
-    'Discover shops, dining spots, Cyberpark jobs, local news, events, and classifieds across Kozhikode.',
+    'Discover shops, dining spots, employment opportunities, local news, events, and classifieds across Kozhikode.',
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },

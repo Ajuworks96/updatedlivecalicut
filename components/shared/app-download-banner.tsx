@@ -15,7 +15,7 @@ export const AppDownloadBanner: React.FC = () => {
           </h3>
 
           <p className="text-[16px] text-blue-100 max-w-2xl leading-relaxed font-normal">
-            Get instant push notifications for 24/7 blood bank emergencies, live beach traffic alerts, Cyberpark walk-in interviews, and local news releases.
+            Get instant push notifications for 24/7 blood bank emergencies, live beach traffic alerts, verified local job walk-in alerts, and local news releases.
           </p>
 
           {/* The mobile apps are not published yet, so these announce rather

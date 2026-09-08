@@ -14,7 +14,7 @@ export const FloatingAiButton: React.FC = () => {
   >([
     {
       sender: 'assistant',
-      text: 'Hello! I am your LiveCalicut AI Concierge. Ask me about biriyani spots, Cyberpark jobs, beach rentals, or SM Street shops!',
+      text: 'Hello! I am your LiveCalicut AI Concierge. Ask me about biriyani spots, local jobs, beach rentals, or SM Street shops!',
     },
   ]);
 

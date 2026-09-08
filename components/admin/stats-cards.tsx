@@ -18,7 +18,7 @@ export const StatsCards: React.FC<StatsCardsProps> = ({ metrics }) => {
   const cards: { title: string; value: number; icon: StatIconName; tone: StatTone }[] = [
     { title: 'Total Citizens', value: metrics.totalUsers, icon: 'users', tone: 'blue' },
     { title: 'Commercial Outlets', value: metrics.activeBusinesses, icon: 'store', tone: 'cyan' },
-    { title: 'Cyberpark IT Jobs', value: metrics.activeJobs, icon: 'briefcase', tone: 'emerald' },
+    { title: 'Employment & Jobs', value: metrics.activeJobs, icon: 'briefcase', tone: 'emerald' },
     {
       title: 'Pre-Owned Classifieds',
       value: metrics.marketplaceItems,

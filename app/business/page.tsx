@@ -72,6 +72,29 @@ export default function BusinessDirectoryPage() {
         }
       />
 
+      {/* Quick Category Chips */}
+      <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+        {BUSINESS_CATEGORIES.slice(0, 8).map((catName) => {
+          const isSelected = (category === '' && catName === 'All Categories') || category === catName;
+          return (
+            <button
+              key={catName}
+              onClick={() => {
+                setCategory(catName === 'All Categories' ? '' : catName);
+                setPage(1);
+              }}
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all border cursor-pointer ${
+                isSelected
+                  ? 'bg-[#2563EB] text-white border-[#2563EB] shadow-xs'
+                  : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+              }`}
+            >
+              {catName}
+            </button>
+          );
+        })}
+      </div>
+
       {/* Search & Filters */}
       <div className="space-y-4">
         <UniversalSearch

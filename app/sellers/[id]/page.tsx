@@ -5,7 +5,7 @@ import { ResponsiveGrid } from '@/components/layout/responsive-grid';
 import { UserCheck } from 'lucide-react';
 
 export default async function SellerProfilePage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+  const { id: _id } = await params;
 
   return (
     <div className="space-y-8 py-4">

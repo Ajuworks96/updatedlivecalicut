@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState, useEffectEvent } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ArrowRight, Search } from 'lucide-react';
@@ -21,10 +21,10 @@ const SLIDES = [
     alt: 'Busy local market street representing Kozhikode commerce',
   },
   {
-    kicker: 'Cyberpark careers',
-    line: 'IT hiring, walk-ins, and local openings updated for Calicut talent every week.',
+    kicker: 'Calicut careers',
+    line: 'Tech hiring, walk-ins, and local openings updated for Calicut talent every week.',
     image: '/heroes/workplace.jpg',
-    alt: 'Modern workspace for Cyberpark and local job seekers',
+    alt: 'Modern workspace for Kozhikode job seekers',
   },
   {
     kicker: 'Malabar coast',
@@ -79,7 +79,7 @@ function useKozhikodeClock() {
 
 export const HeroBanner: React.FC<HeroBannerProps> = ({
   title = 'LiveCalicut.com',
-  subtitle = 'Find verified businesses, Cyberpark jobs, homes, and local stories — one platform built for Kozhikode.',
+  subtitle = 'Find verified businesses, jobs, homes, and local stories — one platform built for Kozhikode.',
   badgeText = 'Digital operating system for the city',
 }) => {
   const router = useRouter();
@@ -94,7 +94,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
   const [query, setQuery] = useState('');
   const clockLabel = useKozhikodeClock();
 
-  const restartProgress = useEffectEvent(() => {
+  const restartProgress = useCallback(() => {
     const bar = progressRef.current;
     if (!bar) return;
     progressTween.current?.kill();
@@ -108,9 +108,9 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
       duration: INTERVAL_MS / 1000,
       ease: 'none',
     });
-  });
+  }, [paused]);
 
-  const goTo = useEffectEvent((next: number) => {
+  const goTo = useCallback((next: number) => {
     if (next === index) return;
     const reduced = prefersReducedMotion();
     const el = slideRef.current;
@@ -135,7 +135,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
         );
       },
     });
-  });
+  }, [index]);
 
   useEffect(() => {
     SLIDES.forEach((slide) => {

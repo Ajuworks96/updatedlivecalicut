@@ -31,8 +31,8 @@ export const CityMetrics: React.FC<CityMetricsProps> = ({ metrics: customMetrics
     },
     {
       value: '5,200+',
-      label: 'Cyberpark IT Jobs',
-      subtext: 'Software engineering & corporate hiring positions posted',
+      label: 'Verified Local Jobs',
+      subtext: 'Engineering, healthcare, retail & corporate hiring across Calicut',
       icon: 'Briefcase',
       color: 'text-emerald-600',
       bgColor: 'bg-emerald-50',

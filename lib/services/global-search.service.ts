@@ -106,9 +106,9 @@ export class GlobalSearchService {
           id: j.id,
           module: 'jobs',
           title: j.title,
-          summary: `${j.companies?.name || 'Cyberpark Firm'} • ${j.salary}`,
+          summary: `${j.companies?.name || 'Kozhikode Firm'} • ${j.salary}`,
           category: j.employment_type.toUpperCase(),
-          location: 'Cyberpark / Calicut',
+          location: j.location || 'Kozhikode, Kerala',
           url: `/jobs/${j.slug}`,
           metaBadge: j.salary,
         });

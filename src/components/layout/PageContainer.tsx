@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { usePathname } from 'next/navigation';
-import { Navbar } from './Navbar';
-import { Footer } from './Footer';
-import { MobileNav } from './MobileNav';
+import { Header } from '@/../components/layout/header';
+import { Footer } from '@/../components/layout/footer';
+import { MobileBottomNav } from '@/../components/layout/mobile-bottom-nav';
 
 interface PageContainerProps {
   children: React.ReactNode;
@@ -32,14 +32,14 @@ export const PageContainer: React.FC<PageContainerProps> = ({ children }) => {
         Skip to main content
       </a>
 
-      <Navbar />
+      <Header />
 
       <main id="main-content" className="relative z-10 w-full flex-1">
         {children}
       </main>
 
       <Footer />
-      <MobileNav />
+      <MobileBottomNav />
     </div>
   );
 };

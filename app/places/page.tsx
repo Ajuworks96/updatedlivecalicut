@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { Container } from '@/components/layout/container';
 import { PageHeader } from '@/components/shared/page-header';
 import { ResponsiveGrid } from '@/components/layout/responsive-grid';
 import { Compass, MapPin, Star, Clock, Ticket, Globe, Phone, Loader2, Search } from 'lucide-react';
@@ -46,7 +47,7 @@ export default function PlacesCatalogPage() {
   });
 
   return (
-    <div className="space-y-8 py-4">
+    <Container className="py-6 sm:py-10 space-y-8">
       <PageHeader
         title="Places to Visit in Kozhikode"
         description="Historical heritage sites, pristine beach piers, SM Street shopping markets & nature spots."
@@ -185,6 +186,6 @@ export default function PlacesCatalogPage() {
           ))}
         </div>
       )}
-    </div>
+    </Container>
   );
 }

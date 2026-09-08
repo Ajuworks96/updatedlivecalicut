@@ -33,9 +33,18 @@ export const AuthGateLink: React.FC<AuthGateLinkProps> = ({
   if (isAuthenticated && !isLoading) {
     if (requireVerified && emailUnconfirmed) {
       return (
-        <button
-          type="button"
-          className={cn('inline-flex', className)}
+        <span
+          role="button"
+          tabIndex={0}
+          className={cn('inline-flex cursor-pointer', className)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              toast.warning(
+                'Verify your email',
+                'Confirm your email address before continuing. Check your inbox for the link.'
+              );
+            }
+          }}
           onClick={() =>
             toast.warning(
               'Verify your email',
@@ -44,7 +53,7 @@ export const AuthGateLink: React.FC<AuthGateLinkProps> = ({
           }
         >
           {children}
-        </button>
+        </span>
       );
     }
 
@@ -56,9 +65,20 @@ export const AuthGateLink: React.FC<AuthGateLinkProps> = ({
   }
 
   return (
-    <button
-      type="button"
-      className={cn('inline-flex', className)}
+    <span
+      role="button"
+      tabIndex={0}
+      className={cn('inline-flex cursor-pointer', className)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          if (pending) stashPendingAuthAction(pending);
+          else stashPendingAuthAction({ type: 'custom', href });
+          promptLogin({
+            next: href,
+            message: loginMessage || 'Sign in to continue with this action.',
+          });
+        }
+      }}
       onClick={() => {
         if (pending) stashPendingAuthAction(pending);
         else stashPendingAuthAction({ type: 'custom', href });
@@ -69,6 +89,6 @@ export const AuthGateLink: React.FC<AuthGateLinkProps> = ({
       }}
     >
       {children}
-    </button>
+    </span>
   );
 };

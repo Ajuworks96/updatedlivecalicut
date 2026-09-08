@@ -13,7 +13,7 @@ export const BUSINESS_CATEGORIES = [
   { id: 'shopping', name: 'Textiles & Shopping', icon: 'ShoppingBag' },
   { id: 'health', name: 'Hospitals & Clinics', icon: 'Activity' },
   { id: 'services', name: 'Home & Auto Services', icon: 'Wrench' },
-  { id: 'tech', name: 'IT & Cyberpark Firms', icon: 'Laptop' },
+  { id: 'tech', name: 'IT & Software Companies', icon: 'Laptop' },
   { id: 'education', name: 'Colleges & Tuition', icon: 'GraduationCap' },
   { id: 'real_estate', name: 'Properties & Rent', icon: 'Building2' },
   { id: 'travel', name: 'Travel & Resorts', icon: 'Compass' },

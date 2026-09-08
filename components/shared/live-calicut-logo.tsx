@@ -20,8 +20,8 @@ export const LiveCalicutLogo: React.FC<LiveCalicutLogoProps> = ({
           className="h-6 sm:h-7 w-auto object-contain group-hover:scale-[1.02] transition-transform duration-200"
         />
         {showSubtitle && (
-          <span className="text-[8.5px] uppercase tracking-[0.2em] font-extrabold text-[#2563EB] font-sans leading-none">
-            Digital Operating System
+          <span className="text-[9px] font-semibold tracking-wider text-[#2563EB] font-sans leading-none">
+            Everything Kozhikode
           </span>
         )}
       </div>

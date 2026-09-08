@@ -2,6 +2,7 @@
 
 import React, { Suspense, useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { PageHeader } from '@/components/shared/page-header';
 import { UniversalSearch } from '@/components/shared/universal-search';
 import { BusinessCard } from '@/components/cards/business-card';
@@ -29,7 +30,7 @@ import type { SearchGroupedResults } from '@/lib/types/api.types';
 
 const SEARCH_HOOKS = [
   { href: '/business', label: 'Browse businesses', description: 'Verified shops & dining', icon: Building2 },
-  { href: '/jobs', label: 'Explore jobs', description: 'Cyberpark & local roles', icon: Briefcase },
+  { href: '/jobs', label: 'Explore jobs', description: 'Tech & local career openings', icon: Briefcase },
   { href: '/events', label: 'See events today', description: 'What’s on in the city', icon: Calendar },
   { href: '/marketplace', label: 'Marketplace', description: 'Buy & sell nearby', icon: ShoppingBag },
 ];
@@ -48,7 +49,7 @@ function SearchPageInner() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [q, setQ] = useState(searchParams.get('q') || '');
-  const [area, setArea] = useState(searchParams.get('area') || ALL_LOCATIONS_LABEL);
+  const [area, setArea] = useState(searchParams.get('area') || searchParams.get('location') || ALL_LOCATIONS_LABEL);
   const [module, setModule] = useState(searchParams.get('module') || 'all');
   const [sort, setSort] = useState(searchParams.get('sort') || 'relevance');
   const [page, setPage] = useState(1);
@@ -287,7 +288,7 @@ function SearchPageInner() {
                           : `/search?q=${encodeURIComponent(doc.title)}`;
 
                 return (
-                  <a
+                  <Link
                     key={doc.id}
                     href={href}
                     className="surface-card flex h-full flex-col justify-between space-y-2 p-5 transition hover:border-[#2563EB]"
@@ -306,7 +307,7 @@ function SearchPageInner() {
                         {doc.area}
                       </p>
                     )}
-                  </a>
+                  </Link>
                 );
               })}
             </div>

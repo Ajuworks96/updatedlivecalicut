@@ -75,7 +75,7 @@ export default function JobsPage() {
     <Container className="py-8 sm:py-12 space-y-8">
       <PageHeader
         title="Kozhikode Employment & Jobs Portal"
-        description="Software openings at Cyberpark, retail walk-ins, hospital clinical vacancies & local shop hiring."
+        description="Verified openings across tech, healthcare, retail, education, sales, office & local businesses across Kozhikode."
         icon={<Briefcase className="w-6 h-6" />}
         breadcrumbs={[{ label: 'Jobs & Careers' }]}
         action={
@@ -85,18 +85,18 @@ export default function JobsPage() {
               loginMessage="Sign in to view your saved jobs."
               pending={{ type: 'custom', href: '/jobs/saved' }}
             >
-              <Button variant="outline" size="sm" className="gap-1.5 h-[40px] px-4 rounded-2xl">
+              <span className="inline-flex items-center justify-center gap-1.5 h-[40px] px-4 rounded-2xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-sm font-semibold transition-colors">
                 <BookmarkCheck className="w-4 h-4 text-[#2563EB]" /> Saved Jobs
-              </Button>
+              </span>
             </AuthGateLink>
             <AuthGateLink
               href="/applications"
               loginMessage="Sign in to track your job applications."
               pending={{ type: 'custom', href: '/applications' }}
             >
-              <Button size="sm" className="h-[40px] px-5 rounded-2xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold">
+              <span className="inline-flex items-center justify-center h-[40px] px-5 rounded-2xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-sm font-bold transition-colors shadow-sm">
                 My Applications
-              </Button>
+              </span>
             </AuthGateLink>
           </div>
         }
@@ -104,7 +104,7 @@ export default function JobsPage() {
 
       <div className="space-y-4">
         <UniversalSearch
-          placeholder="Search job title, Cyberpark company, or skill..."
+          placeholder="Search job title, company name, or skills across Calicut..."
           onSearch={(val) => { setQ(val); setPage(1); }}
         />
         <div className="flex flex-wrap items-center gap-3">

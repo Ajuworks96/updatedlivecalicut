@@ -1,16 +1,20 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PageHeader } from '@/components/shared/page-header';
 import { EventCard } from '@/components/cards/event-card';
 import { ResponsiveGrid } from '@/components/layout/responsive-grid';
 import { CategoryPills } from '@/components/feed/category-pills';
 import { Container } from '@/components/layout/container';
-import { Calendar, Search, Filter, Sparkles, MapPin, Ticket } from 'lucide-react';
+import { EmptyState } from '@/components/shared/empty-state';
+import { Calendar, Filter, Loader2, Search } from 'lucide-react';
 
 export default function EventsListingPage() {
+  const [events, setEvents] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [dateFilter, setDateFilter] = useState('All');
+  const [search, setSearch] = useState('');
 
   const eventCategories = [
     { id: 'all', name: 'All Events', slug: '' },
@@ -23,51 +27,29 @@ export default function EventsListingPage() {
     { id: 'sports', name: 'Sports Events', slug: 'sports' },
   ];
 
-  const sampleEvents = [
-    {
-      id: '1',
-      title: 'Malabar Literature & Cultural Fest 2026',
-      date: 'Sat, 18 Jul • 5:00 PM',
-      venue: 'Calicut Beach Freedom Square',
-      category: 'Festivals & Fests',
-      isFree: true,
-    },
-    {
-      id: '2',
-      title: 'Cyberpark Tech Developers Summit 2026',
-      date: 'Sun, 26 Jul • 10:00 AM',
-      venue: 'Sahya Building Auditorium, Cyberpark',
-      category: 'Tech & Meetups',
-      isFree: false,
-    },
-    {
-      id: '3',
-      title: 'Beypore Water Fest & Boat Race 2026',
-      date: 'Fri, 31 Jul • 09:00 AM',
-      venue: 'Beypore Marina Harbour',
-      category: 'Festivals & Fests',
-      isFree: true,
-    },
-    {
-      id: '4',
-      title: 'Mananchira Evening Gazal & Poetry Session',
-      date: 'Sat, 01 Aug • 6:30 PM',
-      venue: 'Open Stage, Mananchira Square',
-      category: 'Concerts & Music',
-      isFree: true,
-    },
-  ];
+  useEffect(() => {
+    fetch('/api/events')
+      .then((r) => r.json())
+      .then((json) => setEvents(json?.data || []))
+      .catch(() => setEvents([]))
+      .finally(() => setLoading(false));
+  }, []);
 
-  const filteredEvents = sampleEvents.filter((evt) => {
-    const matchesCat = !selectedCategory || evt.category.toLowerCase().includes(selectedCategory.toLowerCase());
-    return matchesCat;
+  const filteredEvents = events.filter((evt) => {
+    const catName = evt.event_categories?.name || evt.category || '';
+    const matchesCat = !selectedCategory || catName.toLowerCase().includes(selectedCategory.toLowerCase());
+    const matchesSearch =
+      !search ||
+      evt.title?.toLowerCase().includes(search.toLowerCase()) ||
+      evt.venue?.toLowerCase().includes(search.toLowerCase());
+    return matchesCat && matchesSearch;
   });
 
   return (
     <Container className="py-8 sm:py-12 space-y-8">
       <PageHeader
         title="Kozhikode City Events Calendar"
-        description="Discover upcoming cultural fests, literary gatherings, food expos & tech meetups across Calicut."
+        description="Discover upcoming cultural fests, literary gatherings, food expos & meetups across Kozhikode."
         icon={<Calendar className="w-6 h-6 text-[#2563EB]" />}
         breadcrumbs={[{ label: 'City Events' }]}
       />
@@ -96,18 +78,32 @@ export default function EventsListingPage() {
         </div>
       </div>
 
-      {/* Event Cards Grid */}
-      <ResponsiveGrid cols={3}>
-        {filteredEvents.map((evt) => (
-          <EventCard
-            key={evt.id}
-            title={evt.title}
-            date={evt.date}
-            venue={evt.venue}
-            category={evt.category}
-          />
-        ))}
-      </ResponsiveGrid>
+      {loading ? (
+        <div className="flex items-center justify-center py-20 gap-3 text-[#6B7280]">
+          <Loader2 className="w-5 h-5 animate-spin text-[#2563EB]" />
+          <span className="text-sm font-medium">Loading upcoming events...</span>
+        </div>
+      ) : filteredEvents.length === 0 ? (
+        <EmptyState
+          icon={<Calendar className="w-8 h-8 text-[#2563EB]" />}
+          title="No upcoming events found"
+          description="There are currently no events matching your selected filter. Be the first to list an event in Kozhikode."
+          actionLabel="Explore All Categories"
+          actionHref="/explore"
+        />
+      ) : (
+        <ResponsiveGrid cols={3}>
+          {filteredEvents.map((evt) => (
+            <EventCard
+              key={evt.id}
+              title={evt.title}
+              date={evt.start_date ? new Date(evt.start_date).toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' }) : 'Upcoming'}
+              venue={evt.venue || 'Kozhikode'}
+              category={evt.event_categories?.name || evt.category || 'Event'}
+            />
+          ))}
+        </ResponsiveGrid>
+      )}
     </Container>
   );
 }

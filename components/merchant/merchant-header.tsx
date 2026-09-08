@@ -101,7 +101,7 @@ export const MerchantHeader: React.FC<MerchantHeaderProps> = ({
                 </div>
                 <div className="p-2.5 rounded-xl bg-[#F8FAFC] border border-[#E5E7EB] space-y-1">
                   <p className="font-bold text-[#111827]">New Job Application</p>
-                  <p className="text-[11px] text-[#6B7280]">Fullstack developer applied to Cyberpark vacancy.</p>
+                  <p className="text-[11px] text-[#6B7280]">Fullstack developer applied to posted job vacancy.</p>
                 </div>
               </div>
             </div>

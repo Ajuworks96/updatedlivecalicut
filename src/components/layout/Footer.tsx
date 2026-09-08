@@ -18,7 +18,7 @@ export const Footer: React.FC = () => {
           <div className="md:col-span-1 space-y-4">
             <LiveCalicutLogo />
             <p className="text-[13px] text-[#6B7280] leading-relaxed font-normal">
-              Kozhikode’s digital operating system connecting local shops, Cyberpark job seekers, and vibrant marketplace sellers across the Malabar region.
+              Kozhikode’s digital operating system connecting local shops, job seekers, and vibrant marketplace sellers across the Malabar region.
             </p>
           </div>
 
@@ -32,7 +32,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link href="/jobs" className="hover:text-[#2563EB] transition-colors">
-                  Cyberpark & Calicut Jobs
+                  Kozhikode Jobs & Careers
                 </Link>
               </li>
               <li>
