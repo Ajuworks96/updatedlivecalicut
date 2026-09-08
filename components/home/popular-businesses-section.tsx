@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Sparkles, Star, MapPin, ArrowRight } from 'lucide-react';
+import { Sparkles, Star, MapPin, ArrowRight, Store, Building2, Utensils, Heart, Home, Briefcase, PlusCircle } from 'lucide-react';
 
 export interface PopularBusinessItem {
   id: string;
@@ -22,9 +22,7 @@ interface PopularBusinessesSectionProps {
 export const PopularBusinessesSection: React.FC<PopularBusinessesSectionProps> = ({
   businesses = [],
 }) => {
-  if (!businesses || businesses.length === 0) {
-    return null;
-  }
+  const hasRealItems = businesses && businesses.length > 0;
 
   return (
     <section className="w-full bg-white py-12 sm:py-16 border-b border-slate-100">
@@ -37,77 +35,121 @@ export const PopularBusinessesSection: React.FC<PopularBusinessesSectionProps> =
             </div>
             <div>
               <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight font-sans">
-                Popular Businesses
+                Popular &amp; Verified Businesses
               </h2>
               <p className="text-xs sm:text-sm text-slate-500 font-normal">
-                Discover top rated businesses in Kozhikode
+                Discover top rated dining, shopping, hospitals &amp; retail across Kozhikode
               </p>
             </div>
           </div>
 
-          <Link
-            href="/business"
-            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#2563EB] hover:text-[#1D4ED8] transition-colors group"
-          >
-            <span>View All</span>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/business/create"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-[#2563EB] font-bold text-xs transition-colors"
+            >
+              <PlusCircle className="w-3.5 h-3.5" />
+              <span>List Business</span>
+            </Link>
+            <Link
+              href="/business"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#2563EB] hover:text-[#1D4ED8] transition-colors group"
+            >
+              <span>View All</span>
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          </div>
         </div>
 
-        {/* 6 Cards Responsive Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {businesses.map((biz) => {
-            const href = biz.slug ? `/business/${biz.slug}` : `/business/${biz.id}`;
+        {hasRealItems ? (
+          /* 6 Cards Responsive Grid with real DB data */
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {businesses.map((biz) => {
+              const href = biz.slug ? `/business/${biz.slug}` : `/business/${biz.id}`;
 
-            return (
-              <Link
-                key={biz.id}
-                href={href}
-                className="group flex flex-col bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-2xs hover:shadow-md transition-all duration-200 hover:-translate-y-1"
-              >
-                {/* Image */}
-                <div className="relative w-full h-32 sm:h-36 bg-slate-100 overflow-hidden">
-                  <img
-                    src={biz.image || '/heroes/city-market.jpg'}
-                    alt={biz.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-
-                {/* Info */}
-                <div className="p-3.5 flex flex-col flex-1 justify-between space-y-2">
-                  <div>
-                    <h3 className="font-bold text-slate-900 text-sm group-hover:text-[#2563EB] transition-colors line-clamp-1">
-                      {biz.name}
-                    </h3>
-                    <p className="text-[11px] font-medium text-slate-500 mt-0.5 truncate">
-                      {biz.category}
-                    </p>
+              return (
+                <Link
+                  key={biz.id}
+                  href={href}
+                  className="group flex flex-col bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-2xs hover:shadow-md transition-all duration-200 hover:-translate-y-1"
+                >
+                  {/* Image */}
+                  <div className="relative w-full h-32 sm:h-36 bg-slate-100 overflow-hidden">
+                    <img
+                      src={biz.image || '/heroes/city-market.jpg'}
+                      alt={biz.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
                   </div>
 
-                  <div className="space-y-1 pt-1 border-t border-slate-100">
-                    <div className="flex items-center gap-1 text-xs">
-                      <div className="flex items-center gap-0.5 text-amber-600 font-bold">
-                        <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
-                        <span>{biz.rating ? biz.rating.toFixed(1) : '4.4'}</span>
-                      </div>
-                      <span className="text-slate-400 text-[11px]">
-                        ({biz.reviewCount ?? 150})
-                      </span>
+                  {/* Info */}
+                  <div className="p-3.5 flex flex-col flex-1 justify-between space-y-2">
+                    <div>
+                      <h3 className="font-bold text-slate-900 text-sm group-hover:text-[#2563EB] transition-colors line-clamp-1">
+                        {biz.name}
+                      </h3>
+                      <p className="text-[11px] font-medium text-slate-500 mt-0.5 truncate">
+                        {biz.category}
+                      </p>
                     </div>
 
-                    {biz.location && (
-                      <div className="flex items-center gap-1 text-[11px] text-slate-500 truncate">
-                        <MapPin className="w-3 h-3 text-slate-400 shrink-0" />
-                        <span className="truncate">{biz.location}</span>
+                    <div className="space-y-1 pt-1 border-t border-slate-100">
+                      <div className="flex items-center gap-1 text-xs">
+                        <div className="flex items-center gap-0.5 text-amber-600 font-bold">
+                          <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+                          <span>{biz.rating ? biz.rating.toFixed(1) : '4.4'}</span>
+                        </div>
+                        <span className="text-slate-400 text-[11px]">
+                          ({biz.reviewCount ?? 1})
+                        </span>
                       </div>
-                    )}
+
+                      {biz.location && (
+                        <div className="flex items-center gap-1 text-[11px] text-slate-500 truncate">
+                          <MapPin className="w-3 h-3 text-slate-400 shrink-0" />
+                          <span className="truncate">{biz.location}</span>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
+                </Link>
+              );
+            })}
+          </div>
+        ) : (
+          /* Category Explorer Cards when 0 businesses */
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            {[
+              { name: 'Food & Dining', icon: Utensils, href: '/restaurants', count: 'Explore Menus' },
+              { name: 'Healthcare', icon: Heart, href: '/business?category=Healthcare', count: 'Find Doctors' },
+              { name: 'Shopping & Retail', icon: Store, href: '/business?category=Shopping', count: 'Local Shops' },
+              { name: 'Real Estate', icon: Home, href: '/properties', count: 'Homes & Plots' },
+              { name: 'IT & Careers', icon: Briefcase, href: '/jobs', count: 'Job Openings' },
+              { name: 'Enterprises', icon: Building2, href: '/business', count: 'All Outlets' },
+            ].map((cat) => {
+              const Icon = cat.icon;
+              return (
+                <Link
+                  key={cat.name}
+                  href={cat.href}
+                  className="group p-5 rounded-2xl bg-slate-50 hover:bg-white border border-slate-200/80 hover:border-[#2563EB]/40 hover:shadow-md transition-all flex flex-col items-center text-center space-y-2.5"
+                >
+                  <div className="w-11 h-11 rounded-2xl bg-white group-hover:bg-[#2563EB] text-[#2563EB] group-hover:text-white shadow-xs flex items-center justify-center transition-colors">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-slate-900 text-xs sm:text-sm group-hover:text-[#2563EB] transition-colors">
+                      {cat.name}
+                    </h3>
+                    <p className="text-[11px] text-slate-400 mt-0.5">
+                      {cat.count}
+                    </p>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        )}
       </div>
     </section>
   );

@@ -106,6 +106,14 @@ export default async function HomePage() {
       }));
     }
 
+    // If no specifically flagged featured businesses, use top active businesses
+    if (featuredBusinesses.length === 0 && popularBusinesses.length > 0) {
+      featuredBusinesses = popularBusinesses.slice(0, 4).map((b) => ({
+        ...b,
+        isSponsored: true,
+      }));
+    }
+
     // Add Jobs
     (jobsRes?.data || []).forEach((j: any) => {
       latestListings.push({
